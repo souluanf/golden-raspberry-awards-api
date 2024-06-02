@@ -1,7 +1,7 @@
-
 # Golden Raspberry Awards API
 
-API RESTful para obter o produtor com maior intervalo entre dois prêmios consecutivos e o que obteve dois prêmios mais rápido.
+API RESTful para obter o produtor com maior intervalo entre dois prêmios consecutivos e o que obteve dois prêmios mais
+rápido.
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=souluanf_golden-raspberry-awards-api&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=souluanf_golden-raspberry-awards-api)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=souluanf_golden-raspberry-awards-api&metric=coverage)](https://sonarcloud.io/summary/new_code?id=souluanf_golden-raspberry-awards-api)
@@ -21,17 +21,20 @@ API RESTful para obter o produtor com maior intervalo entre dois prêmios consec
 - [Requisitos](#requisitos)
 - [Configuração](#configuração)
 - [Execução](#execução)
-    - [Executando com Maven](#executando-com-maven)
-    - [Executando com Docker Compose](#executando-com-docker-compose)
+    - [Executando os Testes de Integração](#executando-os-testes-de-integração)
+    - [Executando a Aplicação com Maven](#executando-a-aplicação-com-maven)
+    - [Executando a Aplicação com Docker Compose](#executando-a-aplicação-com-docker-compose)
 - [Acesso ao Banco de Dados](#acesso-ao-banco-de-dados)
     - [Credenciais](#credenciais)
 - [Contato](#contato)
 
 ## Funcionalidades
 
-- Leitura da lista de indicados e vencedores da categoria Pior Filme do Golden Raspberry Awards a partir de um arquivo CSV.
+- Leitura da lista de indicados e vencedores da categoria Pior Filme do Golden Raspberry Awards a partir de um arquivo
+  CSV.
 - Inserção dos dados em uma base de dados ao iniciar a aplicação.
-- Endpoint para obter o produtor com maior intervalo entre dois prêmios consecutivos e o que obteve dois prêmios mais rápido.
+- Endpoint para obter o produtor com maior intervalo entre dois prêmios consecutivos e o que obteve dois prêmios mais
+  rápido.
 
 ## Requisitos
 
@@ -41,12 +44,14 @@ API RESTful para obter o produtor com maior intervalo entre dois prêmios consec
 ## Configuração
 
 **Instalação do JDK e Maven:**
+
 - [Instruções para instalação do JDK](https://docs.oracle.com/en/java/javase/21/install/overview-jdk-installation.html)
 - [Instruções para instalação do Maven](https://maven.apache.org/install.html)
 
 **Configuração do arquivo CSV:**
 
-O arquivo CSV usado para a leitura dos dados pode ser configurado de várias maneiras no arquivo de configuração `application.yml`:
+O arquivo CSV usado para a leitura dos dados pode ser configurado de várias maneiras no arquivo de
+configuração `application.yml`:
 
 ```yaml
 golden-raspberry-awards:
@@ -58,25 +63,29 @@ golden-raspberry-awards:
 
 - **Classpath**: Usando um caminho relativo ao classpath do projeto (`src/main/resources/csv/movielist.csv`).
 - **Caminho Relativo**: Usando um caminho relativo ao diretório raiz do projeto (`csv/movielist.csv`).
-- **Caminho Absoluto**: Usando um caminho absoluto no sistema de arquivos (`/Users/luan/workspace/golden-raspberry-awards-api/src/main/resources/csv/movielist.csv`).
+- **Caminho Absoluto**: Usando um caminho absoluto no sistema de
+  arquivos (`/Users/luan/workspace/golden-raspberry-awards-api/src/main/resources/csv/movielist.csv`).
 
 ## Execução
 
-### Executando com Maven
+### Executando os Testes de Integração
 
-Para executar o projeto usando Maven, siga os passos abaixo:
+Para executar os testes de integração e validar o funcionamento da API e o processamento correto dos dados do CSV,
+utilize o comando Maven abaixo:
 
-1. **Baixar as dependências e compilar o projeto:**
-   ```bash
-   mvn clean compile
-   ```
+```bash
+mvn test
+```
 
-2. **Executar a aplicação:**
-   ```bash
-   mvn spring-boot:run
-   ```
+### Executando a Aplicação com Maven
 
-### Executando com Docker Compose
+Para executar o projeto usando Maven, execute o comandos abaixo:
+
+```bash
+mvn spring-boot:run
+```
+
+### Executando a Aplicação com Docker Compose
 
 Para executar o projeto usando Docker Compose, execute o comando abaixo:
 
@@ -84,9 +93,9 @@ Para executar o projeto usando Docker Compose, execute o comando abaixo:
 docker-compose up -d
 ```
 
-Acesse a API utilizando a URL abaixo:
+### Acesso à Documentação da API
 
-- **OpenApi UI (Local):** [http://localhost:8080](http://localhost:8080)
+- **OpenApi UI (local):** [http://localhost:8080](http://localhost:8080)
 
 ## Acesso ao Banco de Dados
 
@@ -101,12 +110,15 @@ Para acessar o banco de dados H2 utilizado pelo projeto, utilize a seguinte URL:
 | `jdbc:h2:mem:movies_db;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL` |    `user`    |              |
 
 ## Exemplo de Requisição
+
 ```bash
-curl -X 'GET'   'http://localhost:8080/api/v1/movies/producers-award-intervals'   -H 'accept: application/json'
+curl -X 'GET' 'http://localhost:8080/api/v1/movies/producers-award-intervals' -H 'accept: application/json'
 ```
 
 ## Exemplo de Resposta
+
 Status: 200
+
 ```json
 {
   "min": [
@@ -128,16 +140,6 @@ Status: 200
 }
 ```
 
-### Testes de Integração
-
-Foram realizados testes de integração para validar o funcionamento do controlador e do serviço de leitura de CSV. Esses testes garantem que a API está funcionando conforme o esperado e que os dados do CSV são processados corretamente.
-
-Para executar os testes de integração, utilize o comando Maven abaixo:
-
-```bash
-mvn test
-```
-
 ## Contato
 
 Para suporte ou feedback:
@@ -145,4 +147,4 @@ Para suporte ou feedback:
 - **Nome:** Luan Fernandes
 - **Email:**  [contact@luanfernandes.dev](mailto:contact@luanfernandes.dev)
 - **Website:** [https://luanfernandes.dev](https://luanfernandes.dev)
-- **LinkedIn:** [https://www.linkedin.com/in/souluanf](https://www.linkedin.com/in/souluanf)
+- **LinkedIn:** [https://linkedin.com/in/souluanf](https://linkedin.com/in/souluanf)
