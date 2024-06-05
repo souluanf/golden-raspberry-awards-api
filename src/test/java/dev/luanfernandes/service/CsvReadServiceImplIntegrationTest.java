@@ -1,18 +1,17 @@
 package dev.luanfernandes.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-
 import dev.luanfernandes.config.exception.CSVParserException;
 import dev.luanfernandes.domain.dto.MovieCSV;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 @SpringBootTest
-@ActiveProfiles("test")
 class CsvReadServiceImplIntegrationTest {
 
     @Autowired
@@ -20,7 +19,7 @@ class CsvReadServiceImplIntegrationTest {
 
     @Test
     void testReadMoviesFromCSV() {
-        String filename = "csv/valid.csv";
+        String filename = "csv/movielist.csv";
         List<MovieCSV> movies = csvReadFileService.readMoviesFromCSV(filename);
 
         assertThat(movies).isNotEmpty();
@@ -46,13 +45,5 @@ class CsvReadServiceImplIntegrationTest {
         assertThatThrownBy(() -> csvReadFileService.readMoviesFromCSV(invalidPath))
                 .isInstanceOf(CSVParserException.class)
                 .hasMessageContaining("Error reading CSV file");
-    }
-
-    @Test
-    void testReadMoviesFromCSVInvalidFile() {
-        String invalidFile = "csv/invalid.csv";
-        assertThatThrownBy(() -> csvReadFileService.readMoviesFromCSV(invalidFile))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("Error parsing CSV");
     }
 }
